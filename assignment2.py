@@ -56,7 +56,31 @@ def ans_four(df):
     only the column (a Series object) which you created.
     """
     df_copy = df.copy()
-    return df_copy
+    df_copy["Points"] = (df_copy["Gold.2"] * 3) + (df_copy["Silver.2"] * 2) + (df_copy["Bronze.2"])
+    return df_copy["Points"]
 
-df = data_one()
-print(ans_four(df))
+def ans_five(census_df):
+    """
+    Which state has the most counties in it? (hint: consider the sumlevel key
+    carefully! You'll need this for future questions too...)
+    """
+    census_copy = census_df.copy()
+    census_copy = census_copy.set_index("STNAME")
+    return census_copy["COUNTY"].idxmax()
+
+def ans_six(census_df):
+    """
+    Only looking at the three most populous counties for each state, what are the
+    three most populous states (in order of highest population to lowest population)?
+    Use CENSUS2010POP.
+    """
+    return census_df
+
+def main():
+    df = data_one()
+    #print(ans_four(df))
+    census_df = pd.read_csv("census.csv")
+    print(ans_five(census_df))
+
+
+main()
