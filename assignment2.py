@@ -46,7 +46,7 @@ def ans_three(df):
     df_copy["Sum-Win"] = df_copy["Gold"].sub(df_copy["Gold.1"], fill_value=0)
     df_copy["Total_gold"] = df_copy[["Gold", "Gold.1", "Gold.2"]].sum(axis=1)
     df_copy["Diff_3"] = df_copy["Sum-Win"]/df_copy["Total_gold"]
-    return df_copy["Diff_3"].max()
+    return df_copy["Diff_3"].idxmax()
 
 def ans_four(df):
     """
@@ -65,6 +65,8 @@ def ans_five(census_df):
     carefully! You'll need this for future questions too...)
     """
     census_copy = census_df.copy()
+    census_copy = census_copy[["STNAME", "COUNTY"]]
+    census_copy = census_copy.groupby("STNAME", as_index=False).sum()
     census_copy = census_copy.set_index("STNAME")
     return census_copy["COUNTY"].idxmax()
 
@@ -74,13 +76,17 @@ def ans_six(census_df):
     three most populous states (in order of highest population to lowest population)?
     Use CENSUS2010POP.
     """
-    return census_df
+    census_cp = census_df.copy()
+    census_cp = census_cp[["STNAME", "CENSUS2010POP"]]
+    census_cp = census_cp.groupby("STNAME", as_index=False).sum()
+    census_cp = census_cp.sort_values("CENSUS2010POP", ascending=False)
+    return list(census_cp["STNAME"][0:3])
 
 def main():
     df = data_one()
-    #print(ans_four(df))
+    #print(ans_three(df))
     census_df = pd.read_csv("census.csv")
-    print(ans_five(census_df))
+    print(ans_six(census_df))
 
 
 main()
