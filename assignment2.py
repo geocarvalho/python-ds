@@ -89,14 +89,13 @@ def ans_seven(census_df):
     (Hint: population values are stored in columns POPESTIMATE2010 through POPESTIMATE2015, you
     need to consider all six columns.)
     """
-    f1 = census_df[census_df['SUMLEV'] == 50].set_index(['STNAME','CTYNAME'])
-    f1 = f1.ix[:,['POPESTIMATE2010','POPESTIMATE2011','POPESTIMATE2012','POPESTIMATE2013'
-    ,'POPESTIMATE2014','POPESTIMATE2015']]
-    f1 = f1.stack()
-    f2 = f1.max(level=['STNAME','CTYNAME']) - f1.min(level=['STNAME','CTYNAME'])
-    return f2.idxmax()[1] #because [0] is STNAME and [1] is CTYNAME
+    df1 = census_df[census_df['SUMLEV'] == 50].set_index(['STNAME','CTYNAME'])
+    df1 = df1.ix[:,['POPESTIMATE2010','POPESTIMATE2011','POPESTIMATE2012','POPESTIMATE2013'
+    ,'POPESTIMATE2014','POPESTIMATE2015']].stack()
+    df2 = df1.max(level=['STNAME','CTYNAME']) - df1.min(level=['STNAME','CTYNAME'])
+    return df2.idxmax()[1] #because [0] is STNAME and [1] is CTYNAME
 
-def ans_eigth(census_df):
+def ans_eight(census_df):
     """
     In this datafile, the United States is broken up into four regions using the "REGION" column.
     Create a query that finds the counties that belong to regions 1 or 2, whose name
@@ -105,13 +104,16 @@ def ans_eigth(census_df):
     and the same index ID as the census_df (sorted ascending by index)
     """
     census_cp = census_df.copy()
-    return census_cp
+    df1 = census_df[census_df['SUMLEV'] == 50]
+    df1 = df1[(df1["POPESTIMATE2015"] > df1["POPESTIMATE2014"]) & ((df1["REGION"] == 1) | (df1["REGION"] == 2))]
+    df1 = df1[df1["CTYNAME"].str.startswith("Washington")]
+    return df1.ix[:, ["STNAME", "CTYNAME"]]
 
 def main():
     df = data_one()
     #print(ans_three(df))
     census_df = pd.read_csv("census.csv")
-    print(ans_seven(census_df))
+    print(ans_eight(census_df))
 
 
 main()
