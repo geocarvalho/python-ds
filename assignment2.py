@@ -1,3 +1,4 @@
+#http://www.jianshu.com/p/25888616b0d8 for some help
 import pandas as pd
 
 def data_one():
@@ -77,16 +78,40 @@ def ans_six(census_df):
     Use CENSUS2010POP.
     """
     census_cp = census_df.copy()
-    census_cp = census_cp[["STNAME", "CENSUS2010POP"]]
-    census_cp = census_cp.groupby("STNAME", as_index=False).sum()
-    census_cp = census_cp.sort_values("CENSUS2010POP", ascending=False)
-    return list(census_cp["STNAME"][0:3])
+    census_cp = census_df[census_df['SUMLEV'] == 50]
+    census_cp = census_cp.groupby("STNAME")["CENSUS2010POP"].apply(lambda grp: grp.nlargest(3).sum())
+    census_cp = census_cp.nlargest(3).index.tolist()
+    return census_cp
+
+def ans_seven(census_df):
+    """
+    Which county has had the largest absolute change in population within the period 2010-2015?
+    (Hint: population values are stored in columns POPESTIMATE2010 through POPESTIMATE2015, you
+    need to consider all six columns.)
+    """
+    f1 = census_df[census_df['SUMLEV'] == 50].set_index(['STNAME','CTYNAME'])
+    f1 = f1.ix[:,['POPESTIMATE2010','POPESTIMATE2011','POPESTIMATE2012','POPESTIMATE2013'
+    ,'POPESTIMATE2014','POPESTIMATE2015']]
+    f1 = f1.stack()
+    f2 = f1.max(level=['STNAME','CTYNAME']) - f1.min(level=['STNAME','CTYNAME'])
+    return f2.idxmax()[1] #because [0] is STNAME and [1] is CTYNAME
+
+def ans_eigth(census_df):
+    """
+    In this datafile, the United States is broken up into four regions using the "REGION" column.
+    Create a query that finds the counties that belong to regions 1 or 2, whose name
+    starts with 'Washington', and whose POPESTIMATE2015 was greater than their POPESTIMATE 2014.
+    This function should return a 5x2 DataFrame with the columns = ['STNAME', 'CTYNAME']
+    and the same index ID as the census_df (sorted ascending by index)
+    """
+    census_cp = census_df.copy()
+    return census_cp
 
 def main():
     df = data_one()
     #print(ans_three(df))
     census_df = pd.read_csv("census.csv")
-    print(ans_six(census_df))
+    print(ans_seven(census_df))
 
 
 main()
