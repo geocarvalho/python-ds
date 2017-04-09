@@ -3,3 +3,4 @@ Python scripts for the Coursera course: [Introduction to Data Science in Python]
 ### Help links
 * [Pandas basics from DataCamp](https://assets.datacamp.com/blog_assets/PandasPythonForDataScience.pdf)
 * [Tutorials for pandas from pydata](http://pandas.pydata.org/pandas-docs/stable/tutorials.html)
+* Codebasics - [YouTube](https://www.youtube.com/watch?v=CmorAWRsCAw&index=1&list=PLeo1K3hjS3uuASpe-1LjfG5f14Bnozjwy) and [Github](https://github.com/codebasics/py/tree/master/pandas)
