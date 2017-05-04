@@ -130,6 +130,8 @@ df5.groupby("STNAME").agg({"CENSUS2010POP": np.average})
 #print(df5.set_index("STNAME").groupby(level=0)["CENSUS2010POP"].agg({"avg": np.average, "sum": np.sum}))
 #print(df5.set_index("STNAME").groupby(level=0)["POPESTIMATE2010", "POPESTIMATE2011"].agg({"avg": np.average, "sum": np.sum}))
 #print(df5.set_index("STNAME").groupby(level=0)["POPESTIMATE2010", "POPESTIMATE2011"].agg({"POPESTIMATE2010": np.average, "POPESTIMATE2011": np.sum}))
+# Class example:
+# print(df.groupby('Category').apply(lambda df,a,b: sum(df[a] * df[b]), 'Weight (oz.)', 'Quantity'))
 
 """
 Scales
@@ -148,6 +150,12 @@ df6 = df6[df6['SUMLEV']==50]
 df6 = df6.set_index('STNAME').groupby(level=0)['CENSUS2010POP'].agg({'avg': np.average})
 #print(pd.cut(df6['avg'],10))
 
+# Classe example
+s = pd.Series(['Low', 'Low', 'High', 'Medium', 'Low', 'High', 'Low'])
+#print(s.astype("category", categories=["Low", "Medium", "High"], ordered=True))
+s = pd.Series([168, 180, 174, 190, 170, 185, 179, 181, 175, 169, 182, 177, 180, 171])
+#print(pd.cut(s, 3))
+
 """
 Pivot tables
 """
@@ -155,6 +163,9 @@ df = pd.read_csv("cars.csv")
 #print(df.head())
 #print(df.pivot_table(values="(kW)", index="YEAR", columns="Make", aggfunc=np.mean))
 #print(df.pivot_table(values="(kW)", index="YEAR", columns="Make", aggfunc=[np.mean, np.min], margins=True))
+
+# Class example
+#print(pd.pivot_table(Bikes, index=["Manufacturer", "Bike Type"]))
 
 """
 Date functionality in Pandas
