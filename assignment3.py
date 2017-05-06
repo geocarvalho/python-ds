@@ -2,6 +2,10 @@ import pandas as pd
 import numpy as np
 
 def ans_one():
+    """
+    After instructions to merge all data, This function should return a DataFrame with 20 columns and 15 entries.
+    """
+
     #Starting with energy data, exclude the header and footer
     energy = pd.read_excel("./data/Energy_Indicators.xls", skiprows=18, skip_footer=38, header=None)
     # Exclude the two first columns
@@ -53,6 +57,12 @@ def ans_one():
     return df_use
 
 def ans_two():
+    """
+    The previous question joined three datasets then reduced this to just the top 15 entries.
+    When you joined the datasets, but before you reduced this to the top 15 items, how many entries did you lose?
+    This function should return a single number.
+    """
+
     #Starting with energy data, exclude the header and footer
     energy = pd.read_excel("./data/Energy_Indicators.xls", skiprows=18, skip_footer=38, header=None)
     # Exclude the two first columns
@@ -98,8 +108,44 @@ def ans_two():
     df_u = pd.merge(pd.merge(energy, GDP, on="Country", how="outer"), ScimEn, on="Country", how="outer")
     return df_u.shape[0] - df_i.shape[0]
 
+def ans_three():
+    """
+    This function should return a Series named avgGDP with 15 countries and their average GDP
+    sorted in descending order.
+    """
+    Top15 = ans_one()
+    avgGDP = Top15.ix[:,-10:].mean(axis=1).sort_values(ascending=False)
+    return avgGDP
+
+def ans_four():
+    """
+    By how much had the GDP changed over the 10 year span for the country with the
+    6th largest average GDP?
+    """
+    Top15 = ans_one()
+    avgGDP = Top15.ix[:,-10:].mean(axis=1).sort_values(ascending=False)
+    country = avgGDP.reset_index(level=0)["Country"][5]
+    avgGDP = Top15.ix[:,-10:].var(axis=1).sort_values(ascending=False)
+    return avgGDP.ix[country, 0]
+    # not done
+
+def ans_five():
+    """
+    What is the mean energy supply per capita?
+    """
+    Top15 = ans_one()
+    return Top15["Energy Supply per Capita"].mean()
+
+def ans_six():
+    """
+    What country has the maximum % Renewable and what is the percentage?
+    """
+    Top15 = ans_one()
+    sr = tuple(Top15[Top15["% Renewable"] == Top15["% Renewable"].max()]["% Renewable"].iloc[0])
+    return sr
+
 def main():
-    data = ans_two()
+    data = ans_six()
     print(data)
 
 if __name__ == "__main__":
