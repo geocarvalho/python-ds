@@ -141,11 +141,67 @@ def ans_six():
     What country has the maximum % Renewable and what is the percentage?
     """
     Top15 = ans_one()
-    sr = tuple(Top15[Top15["% Renewable"] == Top15["% Renewable"].max()]["% Renewable"].iloc[0])
-    return sr
+    max_country = tuple(Top15[Top15["% Renewable"] == Top15["% Renewable"].max()][\
+    "% Renewable"].reset_index(level=0).iloc[0])
+    return max_country
+
+def ans_seven():
+    """
+    Create a new column that is the ratio of Self-Citations to Total Citations.
+    What is the maximum value for this new column, and what country has the highest ratio?
+    """
+    Top15 = ans_one()
+    Top15["Ratio-citations"] = Top15['Self-citations'] / Top15['Citations']
+    return tuple(Top15[Top15["Ratio-citations"] == Top15["Ratio-citations"].max()][\
+    "Ratio-citations"].reset_index(level=0).iloc[0])
+
+def ans_eight():
+    """
+    Create a column that estimates the population using Energy Supply and
+    Energy Supply per capita. What is the third most populous country according
+    to this estimate?
+    """
+    Top15 = ans_one()
+    df = Top15[["Energy Supply", "Energy Supply per Capita"]]
+    df["Population_est"] = df["Energy Supply"] / df["Energy Supply per Capita"]
+    return tuple(df.sort_values(["Population_est"], ascending=False)["Population_est"\
+    ].reset_index(level=0).iloc[2])[0]
+
+def ans_nine():
+    """
+    Create a column that estimates the number of citable documents per person.
+    What is the correlation between the number of citable documents per capita and
+    the energy supply per capita? Use the .corr() method, (Pearson's correlation).
+    This function should return a single number.
+    """
+    Top15 = ans_one()
+    Top15['PopEst'] = Top15['Energy Supply'] / Top15['Energy Supply per Capita']
+    Top15['Citable docs per Capita'] = Top15['Citable documents'] / Top15['PopEst']
+    return Top15["Citable docs per Capita"].corr(Top15["Energy Supply per Capita"])
+
+def ans_ten():
+    """
+    Create a new column with a 1 if the country's % Renewable value is at or above
+    the median for all countries in the top 15, and a 0 if the country's % Renewable
+    value is below the median.
+    This function should return a series named HighRenew whose index is the country
+    name sorted in ascending order of rank.
+    """
+    Top15 = ans_one()
+    mean = Top15["% Renewable"].median()
+    Top15.loc[Top15["% Renewable"] < mean, "HighRenew"] = 0
+    Top15.loc[Top15["% Renewable"] >= mean, "HighRenew"] = 1
+    Top15["HighRenew"] = Top15["HighRenew"].astype(int)
+    print(mean)
+    return Top15[["% Renewable", "HighRenew"]]
+
+def ans_eleven():
+    """
+    """
+    return None
 
 def main():
-    data = ans_six()
+    data = ans_ten()
     print(data)
 
 if __name__ == "__main__":
