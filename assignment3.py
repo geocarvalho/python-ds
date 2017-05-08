@@ -121,12 +121,15 @@ def ans_four():
     """
     By how much had the GDP changed over the 10 year span for the country with the
     6th largest average GDP?
+    This function should return a single number.
     """
     Top15 = ans_one()
-    avgGDP = Top15.ix[:,-10:].mean(axis=1).sort_values(ascending=False)
-    country = avgGDP.reset_index(level=0)["Country"][5]
-    avgGDP = Top15.ix[:,-10:].var(axis=1).sort_values(ascending=False)
-    return avgGDP.ix[country, 0]
+    Top15["avgGDP"] = Top15.ix[:,-10:].mean(axis=1)
+    Top15.sort_values(by="avgGDP", ascending=False, inplace=True)
+    Top15.reset_index(inplace=True)
+    country = Top15["Country"][5]
+    Top15["varGDP"] = Top15.ix[:,-11:-1].var(axis=1)
+    return float(Top15.loc[Top15["Country"] == country]["varGDP"])
     # not done
 
 def ans_five():
@@ -197,12 +200,86 @@ def ans_ten():
 
 def ans_eleven():
     """
-    Write here
+    Use the following dictionary to group the Countries by Continent, then create
+    a dateframe that displays the sample size (the number of countries in each
+    continent bin), and the sum, mean, and std deviation for the estimated
+    population of each country. This function should return a DataFrame with index
+    named Continent ['Asia', 'Australia', 'Europe', 'North America', 'South America']
+    and columns ['size', 'sum', 'mean', 'std']
     """
-    return None
+    Top15 = ans_one()
+    ContinentDict = {'China':'Asia',
+                  'United States':'North America',
+                  'Japan':'Asia',
+                  'United Kingdom':'Europe',
+                  'Russian Federation':'Europe',
+                  'Canada':'North America',
+                  'Germany':'Europe',
+                  'India':'Asia',
+                  'France':'Europe',
+                  'South Korea':'Asia',
+                  'Italy':'Europe',
+                  'Spain':'Europe',
+                  'Iran':'Asia',
+                  'Australia':'Australia',
+                  'Brazil':'South America'}
+    # Create a new column with the continents
+    Top15["Continent"] = Top15.index.to_series().map(ContinentDict)
+    # Create a column with the estimated population
+    Top15["EstPop"] = Top15["Energy Supply"] / Top15["Energy Supply per Capita"]
+    # Group your DataFrame by Continent and select yout estimated population to use agg
+    Top15 = Top15.groupby("Continent")["EstPop"].agg(["size", "sum", "mean", "std"])
+    Top15["size"] = Top15["size"].astype(float)
+    return Top15["size"]
+
+def ans_twelve():
+    """
+    Cut % Renewable into 5 bins. Group Top15 by the Continent, as well as these
+    new % Renewable bins. How many countries are in each of these groups?
+    This function should return a Series with a MultiIndex of Continent, then
+    the bins for % Renewable. Do not include groups with no countries.
+    """
+    Top15 = ans_one()
+    ContinentDict = {'China':'Asia',
+                  'United States':'North America',
+                  'Japan':'Asia',
+                  'United Kingdom':'Europe',
+                  'Russian Federation':'Europe',
+                  'Canada':'North America',
+                  'Germany':'Europe',
+                  'India':'Asia',
+                  'France':'Europe',
+                  'South Korea':'Asia',
+                  'Italy':'Europe',
+                  'Spain':'Europe',
+                  'Iran':'Asia',
+                  'Australia':'Australia',
+                  'Brazil':'South America'}
+    # Reset my index
+    Top15 = Top15.reset_index()
+    # Create a new column with the continents
+    Top15["Continent"] = Top15["Country"].map(ContinentDict)
+    # Cut % Renewable into 5 bins
+    # Group the DataFrame by Continent and Renewable bins
+    # How many countries for each group?
+    res = Top15.groupby(["Continent", pd.cut(Top15["% Renewable"], 5)])["Country"].count().dropna()
+    return res
+
+def ans_thirteen():
+    """
+    Convert the Population Estimate series to a string with thousands separator
+    (using commas). Do not round the results.
+    e.g. 317615384.61538464 -> 317,615,384.61538464
+    This function should return a Series PopEst whose index is the country name
+    and whose values are the population estimate string.
+    """
+    Top15 = ans_one()
+    # Create a column with the estimated population
+    Top15["PopEst"] = Top15["Energy Supply"] / Top15["Energy Supply per Capita"]
+    return Top15["PopEst"].map('{:,}'.format)
 
 def main():
-    data = ans_ten()
+    data = ans_four()
     print(data)
 
 if __name__ == "__main__":
