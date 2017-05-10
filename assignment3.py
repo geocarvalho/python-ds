@@ -31,7 +31,7 @@ def ans_one():
     lambda x: x.split(" (")[0] if x.endswith(")") else x)
 
     # Now, GDP data, skip the header
-    GDP = pd.read_csv("./data-bank/world_bank.csv", skiprows=4)
+    GDP = pd.read_csv("./data/world_bank.csv", skiprows=4)
     # Cleaning data
     GDP["Country Name"].replace(to_replace={
     "Korea, Rep.": "South Korea",
@@ -39,7 +39,7 @@ def ans_one():
     "Hong Kong SAR, China": "Hong Kong"
     }, inplace=True)
     # Using the last 10 years of data
-    GDP_use = pd.concat([GDP.ix[:, 0], GDP.ix[:, -12:-2]], axis=1)
+    GDP_use = pd.concat([GDP.ix[:, 0], GDP.ix[:, -10:]], axis=1)
     # Change the column name for the merge
     GDP_use.rename(columns={"Country Name": "Country"}, inplace=True)
 
@@ -88,7 +88,7 @@ def ans_two():
     lambda x: x.split(" (")[0] if x.endswith(")") else x)
 
     # Now, GDP data, skip the header
-    GDP = pd.read_csv("./data-bank/world_bank.csv", skiprows=4)
+    GDP = pd.read_csv("./data/world_bank.csv", skiprows=4)
     # Cleaning data
     GDP["Country Name"].replace(to_replace={
     "Korea, Rep.": "South Korea",
@@ -128,8 +128,8 @@ def ans_four():
     Top15.sort_values(by="avgGDP", ascending=False, inplace=True)
     Top15.reset_index(inplace=True)
     country = Top15["Country"][5]
-    Top15["varGDP"] = Top15.ix[:,-11:-1].var(axis=1)
-    return float(Top15.loc[Top15["Country"] == country]["varGDP"])
+    Top15["varGDP"] = np.subtract(Top15["2015"], Top15["2006"])
+    return type(Top15.iloc[5,-1])
     # not done
 
 def ans_five():
