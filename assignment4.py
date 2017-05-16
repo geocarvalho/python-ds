@@ -30,13 +30,29 @@ def get_list_of_university_towns():
      'MN': 'Minnesota', 'VI': 'Virgin Islands', 'NH': 'New Hampshire', \
      'MA': 'Massachusetts', 'GA': 'Georgia', 'ND': 'North Dakota', 'VA': 'Virginia'}
 
-    df = pd.read_table("/home/george/Git-projects/introduction-to-data-science-in-python/data/university_towns.txt", names=["Text"])
+    '''df = pd.read_table("/home/george/Git-projects/introduction-to-data-science-in-python/data/university_towns.txt", names=["Text"])
     df['State'] = df.loc[df['Text'].str.contains('[edit]', regex=False), 'Text'].str.extract(r'(.*?)\[edit\]', expand=False)
     df['RegionName'] = df.loc[df['State'].isnull(), 'Text'].str.extract(r'(.*?)\s*[\(\[]+.*[\n]*', expand=False)
     df['State'] = df['State'].ffill()
-    df = df.dropna()
-
-    return df.head(20)
+    df = df.dropna()'''
+    state_lst, region_lst = [], []
+    state, region = '', ''
+    with open('/home/george/Git-projects/introduction-to-data-science-in-python/data/university_towns.txt') as file:
+        for line in file:
+            if '[ed' in line:
+                state = line.split('[')[0].strip()
+            elif '(' in line:
+                region = line.split('(')[0].strip()
+            else:
+                region = line.strip()
+            state_lst.append(state)
+            region_lst.append(region)
+    df = pd.DataFrame({
+    'State': state_lst,
+    'RegionName': region_lst
+    })
+    df = df[['State', 'RegionName']].replace("", np.nan).dropna()
+    return df
 
 def main():
     data = get_list_of_university_towns()
