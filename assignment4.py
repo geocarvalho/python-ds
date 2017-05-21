@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from scipy.stats import ttest_ind
 
 
 def get_list_of_university_towns():
@@ -221,10 +222,32 @@ def run_ttest():
     value for better should be either "university town" or "non-university town"
     depending on which has a lower mean price ratio (which is equivilent to a
     reduced market loss).'''
+    hdf = convert_housing_data_to_quarters()
+    rec_start = get_recession_start()
+    rec_bottom = get_recession_bottom()
+    ul = get_list_of_university_towns()
 
+    lst = list(hdf)
+    for i in range(len(lst)):
+        if lst[i] == rec_start:
+            qrt_bfr_rec_start = lst[i-1]
+    hdf['PriceRatio'] = hdf[qrt_bfr_rec_start].div(hdf[rec_bottom])
+    tuple_list = [tuple(x) for x in ul.to_records(index=False)]
+    university_towns = hdf.loc[tuple_list]
+    non_university_towns = hdf.loc[~hdf.index.isin(tuple_list)]
+    ttest = ttest_ind(
+    non_university_towns['PriceRatio'],
+    university_towns['PriceRatio'],
+    nan_policy='omit')
+    different = True if ttest[1]<0.01 else False
+    p = ttest[1]
+    better = "non-university town" if non_university_towns[
+    'PriceRatio'].mean() < university_towns['PriceRatio'].mean() else \
+    "university town"
+    return (different,p,better)
 
 def main():
-    data = convert_housing_data_to_quarters()
+    data = run_ttest()
     print(data)
 
 if __name__ == "__main__":
