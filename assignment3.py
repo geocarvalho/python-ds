@@ -128,9 +128,8 @@ def ans_four():
     Top15.sort_values(by="avgGDP", ascending=False, inplace=True)
     Top15.reset_index(inplace=True)
     country = Top15["Country"][5]
-    Top15["varGDP"] = np.subtract(Top15["2015"], Top15["2006"])
-    return type(Top15.iloc[5,-1])
-    # not done
+    Top15["varGDP"] = Top15["2015"] - Top15["2006"]
+    return Top15.iloc[5,-1]
 
 def ans_five():
     """
