@@ -3,6 +3,9 @@
 ## Introduction to Data Science in Python
 Python scripts for the Coursera course: [Introduction to Data Science in Python](https://www.coursera.org/learn/python-data-analysis) from University of Michigan with Dr. Prof. Christopher Brooks.
 
+## Python for Data Analysis, 2nd Edition
+Python scripts from my studies using the book: [Python for Data Analysis, 2E](https://github.com/wesm/pydata-book) from [Wes McKinney](http://wesmckinney.com/pages/about.html)
+
 ## Think Stats, 2nd Edition
 Python scripts from my studies from the book: [Think Stats, 2nd Edition](http://greenteapress.com/wp/think-stats-2e/) from Dr. Prof. Allen B. Downey.
 
