@@ -12,10 +12,10 @@ Python scripts from my studies from the book: [Think Stats, 2nd Edition](http://
 ## Python Data Science Handbook :x:
 Python scripts resulted from the book: [Python Data Science Handbook](https://github.com/jakevdp/PythonDataScienceHandbook)
 
-## Data School materials:construction:
+## Data School materials :construction:
 Python scripts from [Data School](https://www.youtube.com/channel/UCnVzApLJE2ljPZSeQylSEyg) classes with Prof. Kevin Markham
 
-### Help links:books:
+### :books:Help links:books:
 * [Pandas basics from DataCamp](https://assets.datacamp.com/blog_assets/PandasPythonForDataScience.pdf)
 * [Tutorials for pandas from pydata](http://pandas.pydata.org/pandas-docs/stable/tutorials.html)
 * Codebasics - [YouTube](https://www.youtube.com/watch?v=CmorAWRsCAw&index=1&list=PLeo1K3hjS3uuASpe-1LjfG5f14Bnozjwy) and [Github](https://github.com/codebasics/py/tree/master/pandas)
