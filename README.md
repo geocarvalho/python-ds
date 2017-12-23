@@ -3,6 +3,9 @@
 ## Introduction to Data Science in Python :white_check_mark:
 Python scripts for the Coursera course: [Introduction to Data Science in Python](https://www.coursera.org/learn/python-data-analysis) from University of Michigan with Dr. Prof. Christopher Brooks.
 
+### Data Analysis with Pandas and Python :construction:
+Jupyter notebooks from the Udemy's course: [Data Analysis with Pandas and Python](https://www.udemy.com/data-analysis-with-pandas)
+
 ## Python for Data Analysis, 2nd Edition :x:
 Python scripts from my studies using the book: [Python for Data Analysis, 2E](https://github.com/wesm/pydata-book) from [Wes McKinney](http://wesmckinney.com/pages/about.html)
 
