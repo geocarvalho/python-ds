@@ -85,15 +85,19 @@ Sabemos o número de colunas, os tipos de variável, a quantidade de registros q
 
 O objeto DataFrame é semelhante estrutura do Pandas, que por sua vez nos lembra uma planilha do Excel: contém colunas, linhas e algumas funcionalidades. Essa será uma estrutura que utilizaremos durante todo o curso.
 
-Neste projeto precisamos gerar relatórios, isto é, mostrar os dados para a empresa que nos contratou. Precisamos gerar uma visualização agradável para consulta e um pouco mais sucinta. Para tanto, usaremos o método head(), e serão exibidos apenas os cinco primeiros elementos da lista.
+Neste projeto precisamos gerar relatórios, isto é, mostrar os dados para a empresa que nos contratou. Precisamos gerar uma visualização agradável para consulta e um pouco mais sucinta. Para tanto, usaremos o método `head()`, e serão exibidos apenas os cinco primeiros elementos da lista.
 
+``` 
 dados.head()
+
 Tipo	Bairro	Quartos	Vagas	Suítes	Área	Valor	Condomínio	IPTU
 0	Quitinete	Copacabana	1	0	0	40	1700.0	500.0	60.0
 1	Casa	Jardim Botânico	2	0	1	100	7000.0	NaN	NaN
 2	Conjunto Comercial/Sala	Barra da Tijuca	0	4	0	150	5200.0	4020.0	1111.0
 3	Apartamento	Centro	1	0	0	15	800.0	390.0	20.0
 4	Apartamento	Higienópolis	1	0	0	48	800.0	230.0	NaN
+```
+
 Podemos ampliar o valor de linhas exibidas especificando a quantidade do parâmetro do método, por exemplo head(10), e serão exibidas as 10 primeiras linhas da tabela.
 
 Precisamos, ainda, documentar o relatório para evitar futuras confusões. Para criarmos uma célula logo acima da primeira gerada no projeto, acionamos o atalho "A". Para adicionar uma célula manualmente, basta acessar no menu de ferramentas as opções "Insert > Insert Cell Above".
