@@ -1,0 +1,7 @@
+{
+  "test_sample.py::test_fatorial0": true, 
+  "test_sample.py::test_fatorial1": true, 
+  "test_sample.py::test_fatorial4": true, 
+  "test_sample.py::test_fatorial5": true, 
+  "test_sample.py::test_fatorial_neg": true
+}
