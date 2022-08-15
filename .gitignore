@@ -3,3 +3,6 @@
 */*/*/.ipynb*/
 */*/*/.DS_Store
 alura/data-science/01_primeiros-passos/.ipynb_checkpoints/introducao-a-data-science-checkpoint.ipynb
+.DS_Store
+*/.DS_Store
+*/*/*/*/.DS_Store
