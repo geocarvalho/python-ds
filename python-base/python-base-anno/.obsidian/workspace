@@ -1,0 +1,139 @@
+{
+  "main": {
+    "id": "e5c81e8ddeb504d2",
+    "type": "split",
+    "children": [
+      {
+        "id": "be261a828c455b83",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "14_formatacao-de-textos.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d485426553406b60",
+    "type": "split",
+    "children": [
+      {
+        "id": "00457253eeb7d784",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5e287dd8b0e9062f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "d7ec534644708ec8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "a3b21872ce797c0e",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "4bee4ff6bf3bc9f3",
+    "type": "split",
+    "children": [
+      {
+        "id": "0d6bfe1d7c00202d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "413fbc27f9347810",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "14_formatacao-de-textos.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "6c4544047ac45970",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "14_formatacao-de-textos.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "f646dea7be1ad187",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "511c224cc487742d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "14_formatacao-de-textos.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "be261a828c455b83",
+  "lastOpenFiles": [
+    "18_dicionarios.md",
+    "17_sets-e-a-teoria-dos-conjuntos.md",
+    "20_refatorando-seu-primeiro-hello-world-usando-dict.md",
+    "15_tipos-de-dados-compostos-e-tuplas.md",
+    "16_listas.md"
+  ]
+}
