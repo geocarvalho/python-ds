@@ -4,16 +4,47 @@
     "type": "split",
     "children": [
       {
-        "id": "be261a828c455b83",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "19_standard-input-output-e-argumentos-do-cli.md",
-            "mode": "source",
-            "source": false
+        "id": "99301e5ae818dafa",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "be261a828c455b83",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "19_standard-input-output-e-argumentos-do-cli.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "cccf273338ec5a74",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "19_standard-input-output-e-argumentos-do-cli.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "02c9e85ee98d0dea",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "20_manipulando-arquivos-e-pastas.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        }
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -31,7 +62,9 @@
             "type": "leaf",
             "state": {
               "type": "file-explorer",
-              "state": {}
+              "state": {
+                "sortOrder": "alphabetical"
+              }
             }
           },
           {
@@ -77,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "19_standard-input-output-e-argumentos-do-cli.md",
+                "file": "20_manipulando-arquivos-e-pastas.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "19_standard-input-output-e-argumentos-do-cli.md",
+                "file": "20_manipulando-arquivos-e-pastas.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -117,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "19_standard-input-output-e-argumentos-do-cli.md"
+                "file": "20_manipulando-arquivos-e-pastas.md"
               }
             }
           }
@@ -128,8 +161,9 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "be261a828c455b83",
+  "active": "02c9e85ee98d0dea",
   "lastOpenFiles": [
+    "19_standard-input-output-e-argumentos-do-cli.md",
     "14_formatacao-de-textos.md",
     "18_dicionarios.md",
     "17_sets-e-a-teoria-dos-conjuntos.md",
